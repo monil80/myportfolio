@@ -58,14 +58,17 @@ const Contact = () => {
      
 
        if (data.status) {
-          toast.success('Message successfully sent!')
+         toast.success(data.msg, { position: 'top-left' })
+          alert(data.msg)
        } else {
-         toast.error(data.msg)
+         toast.error(data.msg, { position: "top-left" })
+         alert(data.msg)
        }
 
       
      } catch (error) {
        toast.error('Error In Sending Message')
+        alert('Error In Sending Message')
       //  console.error(error)
       
      }
