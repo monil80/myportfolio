@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import Loader from 'react-loaders'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { useRef } from 'react'
-import emailjs from '@emailjs/browser'
+// import emailjs from '@emailjs/browser'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
+import toast from 'react-hot-toast'
 
 const Contact = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
@@ -26,9 +27,11 @@ const Contact = () => {
   //  }, [])
 
   useEffect(() => {
+     setLocation([22.278688591829415, 70.77066979062346])
     return setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 3000)
+   
   }, [])
  
    const sendEmail = async (e) => {
@@ -55,40 +58,40 @@ const Contact = () => {
      
 
        if (data.status) {
-          alert('Message successfully sent!')
+          toast.success('Message successfully sent!')
        } else {
-         alert(data.msg)
+         toast.error(data.msg)
        }
 
       
      } catch (error) {
-     
-       console.error(error)
+       toast.error('Error In Sending Message')
+      //  console.error(error)
       
      }
 
-     emailjs
-       .sendForm(
-         'service_59ia2bs',
-         'template_kw2cqg',
-         form1.current,
-         'WS-f8MsRXA2wpTytu',
-         {
-           name: obj?.name || '',
-           email: obj?.email || '',
-           subject: obj?.subject || '',
-           message: obj?.message || '',
-         }
-       )
-       .then(
-         () => {
-           alert('Message successfully sent!')
-           // window.location.reload(false)
-         },
-         () => {
-           alert('Failed to send the message, please try again')
-         }
-       )
+    //  emailjs
+    //    .sendForm(
+    //      'service_59ia2bs',
+    //      'template_kw2cqg',
+    //      form1.current,
+    //      'WS-f8MsRXA2wpTytu',
+    //      {
+    //        name: obj?.name || '',
+    //        email: obj?.email || '',
+    //        subject: obj?.subject || '',
+    //        message: obj?.message || '',
+    //      }
+    //    )
+    //    .then(
+    //      () => {
+    //        alert('Message successfully sent!')
+    //        // window.location.reload(false)
+    //      },
+    //      () => {
+    //        alert('Failed to send the message, please try again')
+    //      }
+    //    )
    }
 
   return (
