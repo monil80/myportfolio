@@ -59,7 +59,8 @@ const Contact = () => {
 
        if (data.status) {
          toast.success(data.msg, { position: 'top-left' })
-          alert(data.msg)
+         form1.current.reset(); 
+         alert(data.msg)
        } else {
          toast.error(data.msg, { position: "top-left" })
          alert(data.msg)
